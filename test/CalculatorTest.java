@@ -6,6 +6,22 @@ import org.junit.Test;
  */
 public class CalculatorTest {
 
+    @Test
+    public void whenRuntimeExceptionWithNegativeElements(){
+        RuntimeException exception = null;
+        try{
+        Assert.assertEquals(50, Calculator.add("10,20,-30,50"));
+        }catch (RuntimeException e){
+            exception=e;
+        }
+        Assert.assertNotNull(exception);
+        Assert.assertEquals("Вы ввели значения меньше нуля = [-30]",exception.getMessage());
+    }
+
+    @Test
+    public void whenInputNegativeNumbers(){
+        Assert.assertEquals(50, Calculator.add("10,20,-30,50"));
+    }
 
     @Test
     public void whenInputMoreArgumentsWithDoubleSlash(){

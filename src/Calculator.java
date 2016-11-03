@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by employee on 11/3/16.
  */
 public class Calculator {
     public static void main(String[] args) {
-        System.out.println(add("//;n3;\n     6;15"));
+        System.out.println(add("10,20,-30,50"));
     }
 
     public static int add(final String numbers) {
@@ -17,6 +20,8 @@ public class Calculator {
         return add(numbersWithoutDelimiter, delimiter);
     }
     private static int add(String s,final String delimiter) {
+        List exception = new ArrayList();
+        int sum=0;
         String[] numbersArray = s.split(delimiter);
         int count=0;
         if (numbersArray[0]==""){
@@ -24,9 +29,17 @@ public class Calculator {
         }
         for (String number : numbersArray) {
             if(!number.trim().isEmpty()) {
-                count += Integer.parseInt(number.trim());
+                count = Integer.parseInt(number.trim());
+                if(count<0){
+                    exception.add(count);
+                }
+                sum+=count;
             }
         }
-        return count;
+        if (exception.size()>0){
+            throw new RuntimeException("Вы ввели значения меньше нуля = "+exception.toString());
+        }
+
+        return sum;
     }
 }
