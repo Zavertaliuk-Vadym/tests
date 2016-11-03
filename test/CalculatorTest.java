@@ -7,23 +7,28 @@ import org.junit.Test;
 public class CalculatorTest {
 
     @Test
-    public final void when2NumbersAreUsedThenNoExceptionIsThrown() {
-        Calculator.add("1,2");
-        Assert.assertTrue(true);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void whenInput3Numbers(){
-        Calculator.add("1,2,3");
+    public void when2NumbersAreUsedThenNoExceptionIsThrown() {
+        Assert.assertEquals(3 + 6, Calculator.add("3,6"));
     }
 
     @Test
-    public void whenInputNull(){
-        Calculator.add("");
+    public void whenInput3Numbers() {
+        Assert.assertEquals(16, Calculator.add("3,6,7"));
+
+    }
+
+    @Test
+    public void whenInput5Numbers() {
+        Assert.assertEquals(40, Calculator.add("3,6,7,10,14"));
+    }
+
+    @Test
+    public void whenInputNull() {
+        Assert.assertEquals(0, Calculator.add(""));
     }
 
     @Test(expected = RuntimeException.class)
-    public void whenInputNumberAndSymbol(){
+    public void whenInputNumberAndSymbol() {
         Calculator.add("1,b");
     }
 }

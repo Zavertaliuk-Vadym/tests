@@ -3,28 +3,18 @@
  */
 public class Calculator {
     public static void main(String[] args) {
-        add("");
+        System.out.println(add("3,6,7"));
     }
 
-    static void add(String s) {
+    static int add(String s) {
         String[] numbersArray = s.split(",");
         int count=0;
         if (numbersArray[0]==""){
-            System.out.println("\"\"");
-            return;
+            return 0;
         }
-        if (numbersArray.length==0){
-            System.out.println(count);
-            return;
+        for (String number : numbersArray) {
+            count += Integer.parseInt(number);
         }
-        if (numbersArray.length > 2) {
-            throw new RuntimeException("Up to 2 numbers separated by comma (,) are allowed");
-        } else {
-            for (String number : numbersArray) {
-                count+=Integer.parseInt(number); // If it is not a number, parseInt will throw an exception
-            }
-        }
-        System.out.println(count);
-
+        return count;
     }
 }
