@@ -7,6 +7,11 @@ import org.junit.Test;
 public class CalculatorTest {
 
     @Test
+    public void whenInputMoreArgumentsWithSpace(){
+        Assert.assertEquals(26, Calculator.add("3, 6, 7,          ,10"));
+    }
+
+    @Test
     public void when2NumbersAreUsedThenNoExceptionIsThrown() {
         Assert.assertEquals(3 + 6, Calculator.add("3,6"));
     }

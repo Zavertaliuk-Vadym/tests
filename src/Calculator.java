@@ -3,17 +3,19 @@
  */
 public class Calculator {
     public static void main(String[] args) {
-        System.out.println(add("3,6,7"));
+        System.out.println(add("3, 6, 7,          ,10"));
     }
 
     static int add(String s) {
-        String[] numbersArray = s.split(",");
+        String[] numbersArray = s.split("[,n ]");
         int count=0;
         if (numbersArray[0]==""){
             return 0;
         }
         for (String number : numbersArray) {
-            count += Integer.parseInt(number);
+            if(!number.trim().isEmpty()) {
+                count += Integer.parseInt(number.trim());
+            }
         }
         return count;
     }
