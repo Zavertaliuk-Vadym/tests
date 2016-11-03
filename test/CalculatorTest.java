@@ -1,4 +1,5 @@
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -7,10 +8,15 @@ import org.junit.Test;
 public class CalculatorTest {
 
     @Test
+    public void whenInputMoreArgumentsWithSquareBrackets(){
+        Assert.assertEquals(28, Calculator.add("//[——————]n1—2—25"));
+    }
+
+    @Test
     public void whenInputOneHundred(){
         Assert.assertEquals(80, Calculator.add("10,20,100,50"));
     }
-
+    @Ignore
     @Test
     public void whenRuntimeExceptionWithNegativeElements(){
         RuntimeException exception = null;

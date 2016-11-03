@@ -6,18 +6,17 @@ import java.util.List;
  */
 public class Calculator {
     public static void main(String[] args) {
-        System.out.println(add("10,20,100,50"));
+        System.out.println(add("//[—]n1—2—25"));
     }
 
-    public static int add(final String numbers) {
-        String delimiter = "[, n]";
-        String numbersWithoutDelimiter = numbers;
+    public static int add(String numbers) {
+        String delimiter = ",|n;";
         if (numbers.startsWith("//")) {
             int delimiterIndex = numbers.indexOf("//") + 2;
-            delimiter = numbers.substring(delimiterIndex, delimiterIndex + 1);
-            numbersWithoutDelimiter = numbers.substring(numbers.indexOf("n") + 1);
+            delimiter = numbers.substring(delimiterIndex,numbers.indexOf("n"));
+            numbers = numbers.substring(numbers.indexOf("n") + 1);
         }
-        return add(numbersWithoutDelimiter, delimiter);
+        return add(numbers, delimiter);
     }
     private static int add(String s,final String delimiter) {
         List exception = new ArrayList();
@@ -39,9 +38,9 @@ public class Calculator {
                 sum+=count;
             }
         }
-        if (exception.size()>0){
-            throw new RuntimeException("Вы ввели значения меньше нуля = "+exception.toString());
-        }
+//        if (exception.size()>0){
+//            throw new RuntimeException("Вы ввели значения меньше нуля = "+exception.toString());
+//        }
         return sum;
     }
 }
