@@ -7,6 +7,11 @@ import org.junit.Test;
 public class CalculatorTest {
 
     @Test
+    public void whenInputOneHundred(){
+        Assert.assertEquals(80, Calculator.add("10,20,100,50"));
+    }
+
+    @Test
     public void whenRuntimeExceptionWithNegativeElements(){
         RuntimeException exception = null;
         try{
