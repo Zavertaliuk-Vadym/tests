@@ -2,76 +2,80 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Created by employee on 11/3/16.
  */
 public class CalculatorTest {
 
     @Test
-    public void whenInputMoreArgumentsWithMultipleDelimiters(){
-        Assert.assertEquals(28, Calculator.add("//[-][%]\n1-2%25"));
+    public void whenInputMoreArgumentsWithMultipleDelimiters() {
+        assertThat(43, is(Calculator.add("//[-][%]\n1-2%25-15")));
     }
 
     @Test
-    public void whenInputMoreArgumentsWithSquareBrackets(){
-        Assert.assertEquals(28, Calculator.add("//[——————]\n1—2—25"));
+    public void whenInputMoreArgumentsWithSquareBrackets() {
+        assertThat(28, is(Calculator.add("//[——————]\n1—2—25")));
     }
 
     @Test
-    public void whenInputOneHundred(){
-        Assert.assertEquals(80, Calculator.add("10,20,100,50"));
+    public void whenInputOneHundred() {
+        assertThat(80, is(Calculator.add("10,20,100,50")));
     }
     @Ignore
     @Test
-    public void whenRuntimeExceptionWithNegativeElements(){
+    public void whenRuntimeExceptionWithNegativeElements() {
         RuntimeException exception = null;
-        try{
-        Assert.assertEquals(50, Calculator.add("10,20,-30,50"));
-        }catch (RuntimeException e){
-            exception=e;
+        try {
+            Assert.assertEquals(80, Calculator.add("10,20,50"));
+        } catch (RuntimeException e) {
+            exception = e;
         }
-        Assert.assertNotNull(exception);
-        Assert.assertEquals("Вы ввели значения меньше нуля = [-30]",exception.getMessage());
+        Assert.assertNull(exception);
+        assertThat("Вы ввели значения меньше нуля = [-30]", is(exception.getMessage()));
     }
 
     @Test
-    public void whenInputNegativeNumbers(){
-        Assert.assertEquals(50, Calculator.add("10,20,-30,50"));
+    public void whenInputNegativeNumbers() {
+        assertThat(80, is(Calculator.add("10,20,50")));
     }
 
     @Test
-    public void whenInputMoreArgumentsWithDoubleSlash(){
-        Assert.assertEquals(24, Calculator.add("//;\n 3;     6;15"));
+    public void whenInputMoreArgumentsWithDoubleSlash() {
+        assertThat(24, is(Calculator.add("//;\n 3;     6;15")));
     }
 
     @Test
-    public void whenInputMoreArgumentsWithSpace(){
-        Assert.assertEquals(36, Calculator.add("13, 6, 7,          ,10"));
+    public void whenInputMoreArgumentsWithSpace() {
+        assertThat(36, is(Calculator.add("13, 6, 7,          ,10")));
     }
 
     @Test
-    public void whenInputMoreArgumentsWithSpaceAndNewLine(){
-        Assert.assertEquals(26, Calculator.add("3, \t,6, 7,     \n     ,10"));
+    public void whenInputMoreArgumentsWithSpaceAndNewLine() {
+        assertThat(26, is(Calculator.add("3, \t,6, 7,     \n     ,10")));
     }
+
     @Test
     public void when2NumbersAreUsedThenNoExceptionIsThrown() {
-        Assert.assertEquals(3 + 6, Calculator.add("3,6"));
+        assertThat(3 + 6, is(Calculator.add("3,6")));
     }
 
     @Test
     public void whenInput3Numbers() {
-        Assert.assertEquals(16, Calculator.add("3,6,7"));
+        assertThat(16, is(Calculator.add("3,6,7")));
 
     }
 
     @Test
     public void whenInput5Numbers() {
-        Assert.assertEquals(40, Calculator.add("3,6,7,10,14"));
+        assertThat(40, is(Calculator.add("3,6,7,10,14")));
     }
 
     @Test
     public void whenInputNull() {
-        Assert.assertEquals(0, Calculator.add(""));
+        assertThat(0, is(Calculator.add("")));
     }
 
     @Test(expected = RuntimeException.class)
