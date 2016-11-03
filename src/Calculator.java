@@ -3,11 +3,11 @@
  */
 public class Calculator {
     public static void main(String[] args) {
-        System.out.println(add("3, 6, 7,        ,10"));
+        System.out.println(add("3, 6, 7,   \t     ,10"));
     }
 
     static int add(String s) {
-        String[] numbersArray = s.split("[, ]");
+        String[] numbersArray = s.split("[, nt]");
         int count=0;
         if (numbersArray[0]==""){
             return 0;
