@@ -3,11 +3,21 @@
  */
 public class Calculator {
     public static void main(String[] args) {
-        System.out.println(add("3, 6, 7,   \t     ,10"));
+        System.out.println(add("//;n3;\n     6;15"));
     }
 
-    static int add(String s) {
-        String[] numbersArray = s.split("[, nt]");
+    public static int add(final String numbers) {
+        String delimiter = "[, n]";
+        String numbersWithoutDelimiter = numbers;
+        if (numbers.startsWith("//")) {
+            int delimiterIndex = numbers.indexOf("//") + 2;
+            delimiter = numbers.substring(delimiterIndex, delimiterIndex + 1);
+            numbersWithoutDelimiter = numbers.substring(numbers.indexOf("n") + 1);
+        }
+        return add(numbersWithoutDelimiter, delimiter);
+    }
+    private static int add(String s,final String delimiter) {
+        String[] numbersArray = s.split(delimiter);
         int count=0;
         if (numbersArray[0]==""){
             return 0;

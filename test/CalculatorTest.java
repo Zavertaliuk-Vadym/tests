@@ -6,6 +6,12 @@ import org.junit.Test;
  */
 public class CalculatorTest {
 
+
+    @Test
+    public void whenInputMoreArgumentsWithDoubleSlash(){
+        Assert.assertEquals(24, Calculator.add("//;n 3;     6;15"));
+    }
+
     @Test
     public void whenInputMoreArgumentsWithSpace(){
         Assert.assertEquals(36, Calculator.add("13, 6, 7,          ,10"));
