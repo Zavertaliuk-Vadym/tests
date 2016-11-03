@@ -8,8 +8,13 @@ import org.junit.Test;
 public class CalculatorTest {
 
     @Test
+    public void whenInputMoreArgumentsWithMultipleDelimiters(){
+        Assert.assertEquals(28, Calculator.add("//[-][%]\n1-2%25"));
+    }
+
+    @Test
     public void whenInputMoreArgumentsWithSquareBrackets(){
-        Assert.assertEquals(28, Calculator.add("//[——————]n1—2—25"));
+        Assert.assertEquals(28, Calculator.add("//[——————]\n1—2—25"));
     }
 
     @Test
@@ -36,7 +41,7 @@ public class CalculatorTest {
 
     @Test
     public void whenInputMoreArgumentsWithDoubleSlash(){
-        Assert.assertEquals(24, Calculator.add("//;n 3;     6;15"));
+        Assert.assertEquals(24, Calculator.add("//;\n 3;     6;15"));
     }
 
     @Test

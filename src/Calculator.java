@@ -5,23 +5,19 @@ import java.util.List;
  * Created by employee on 11/3/16.
  */
 public class Calculator {
-    public static void main(String[] args) {
-        System.out.println(add("//[—]n1—2—25"));
-    }
-
     public static int add(String numbers) {
-        String delimiter = ",|n;";
+        String delimiter = "[—,n]";
         if (numbers.startsWith("//")) {
             int delimiterIndex = numbers.indexOf("//") + 2;
-            delimiter = numbers.substring(delimiterIndex,numbers.indexOf("n"));
-            numbers = numbers.substring(numbers.indexOf("n") + 1);
+            delimiter = numbers.substring(delimiterIndex,numbers.indexOf("\n"));
+            numbers = numbers.substring(numbers.indexOf("\n") + 1);
         }
         return add(numbers, delimiter);
     }
     private static int add(String s,final String delimiter) {
         List exception = new ArrayList();
         int sum=0;
-        String[] numbersArray = s.split(delimiter);
+        String[] numbersArray = s.split("["+delimiter+"]");
         int count;
         if (numbersArray[0]==""){
             return 0;
